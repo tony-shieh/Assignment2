@@ -41,9 +41,9 @@ for n in n_values:
         print("time_recursive: %d: "%n, time_recursive)
 
         if time_recursive > 12*60*60:  # If time exceeds 12 hours
-            execution_times_recursive.append(execution_times_recursive[n-1])
+            #execution_times_recursive.append(execution_times_recursive[n-1])
             print("Exceeded 12 hours at n =", n)
-            max_n = n - 1
+            max_n = n 
             print("Maximum value of n reached:", max_n)
             break
 
@@ -53,14 +53,14 @@ for n in n_values:
         max_n = n - 1
         break
 
-for n in n_values:
+for n in range(1, max_n+1):
     time_dynamic = measure_execution_time(fibonacci_dp, n)
     execution_times_dynamic.append(time_dynamic)
     print("execution_times_dynamic: %d: "%n, time_dynamic)
 
 # Plotting execution times
-plt.plot(n_values, execution_times_recursive, label='Recursive')
-plt.plot(n_values, execution_times_dynamic, label='Dynamic Programming')
+plt.plot(n_values[:max_n], execution_times_recursive, label='Recursive')
+plt.plot(n_values[:max_n], execution_times_dynamic, label='Dynamic Programming')
 plt.xlabel('n')
 plt.ylabel('Execution Time (seconds)')
 plt.title('Execution Time of Fibonacci Calculation')
